@@ -5,61 +5,70 @@
 */
 //"use strict";
 //const dataHelpers = require('../server/lib/ddata-helpers.js');
-
 $(document).ready(function() {
+  const parseDate = function(age) {
+    let converted = new Date(age);
+    //Slices off time zone info from end of date string
+    return `Posted ${converted.toString().slice(0, 21)}`;
+  };
 
+  const renderTweets = function() {
+    $.get('/tweets')
+      .done(function(database) {
+        for (let post in database) {
+          let newElement = createTweetElement(database[post]);
+          //createTweetElement returns array
+          //0:text, 1:user, 2:handle. 3:age
+
+          //put metadata in div above text box
+          let $tweetMeta = $('<div class="metadata">')
+          $tweetMeta
+            .append(newElement[1])
+            .append(newElement[2])
+            .append(newElement[3]);
+
+          //put metadata and tweet text in tweet-specific container
+          let $newTweet = $('<article class="tweet">');
+          $newTweet
+            .prepend($tweetMeta)
+            .append(newElement[0]);
+
+          //append final product to container for ALL tweets
+          $('.tweets-container').append($newTweet);
+        }
+      })
+      .fail(function() {
+        alert("Tweet loading failed!");
+      })
+      .always(function() {
+        console.log("finished tweet loading");
+    });
+  };
+
+  const createTweetElement = function(tweet) {        
+    let $text = $('<p>');
+    let $user = $('<p>');
+    let $handle = $('<p>');
+    let $age = $('<p>');
+    console.log(tweet);
+    //add text and class to each new tag
+    $text
+      .text(tweet.content.text)
+      .addClass('tweet-text');
+    $user
+      .text(tweet.user.name)
+      .addClass('user');
+    $handle
+      .text(tweet.user.handle)
+      .addClass('handle');
+    $age
+      .text(parseDate(tweet.created_at))
+      .addClass('date-posted');
+
+    //return-value is consistently formatted
+    return [$text, $user, $handle, $age];
+  };
+
+
+  renderTweets();
 });
-
-const parseDate = function(age) {
-  let converted = new Date(age);
-  //Slices off time zone info from end of date string
-  return `Posted ${converted.toString().slice(0, 21)}`;
-};
-
-const createTweetElement = function() {
-  $.get('/tweets')
-    .done(function(database) {
-      for (let tweet in database) {
-        let $text = $('<p>');
-        let $user = $('<p>');
-        let $handle = $('<p>');
-        let $age = $('<p>');
-
-        //add text and class to each new tag
-        $text
-          .text(database[tweet].content.text)
-          .addClass('tweet-text');
-        $user
-          .text(database[tweet].user.name)
-          .addClass('user');
-        $handle
-          .text(database[tweet].user.handle)
-          .addClass('handle');
-        $age
-          .text(parseDate(database[tweet].created_at))
-          .addClass('date-posted');
-        
-        //put metadata in div above text box
-        let $tweetMeta = $('<div class="metadata">')
-        $tweetMeta
-          .append($user)
-          .append($handle)
-          .append($age);
-
-        //put metadata and tweet text in tweet-specific container
-        let $tweet = $('<article class="tweet">');
-        $tweet
-          .prepend($tweetMeta)
-          .append($text);
-
-        //append final product to container for ALL tweets
-        $('.tweets-container').append($tweet);
-      }
-    })
-    .fail(function() {
-      alert("Tweet loading failed!");
-    })
-    .always(function() {
-      console.log("finished tweet loading");
-  });
-}
