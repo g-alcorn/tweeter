@@ -1,0 +1,16 @@
+.page-head {
+  background-color: rgb(100, 240, 255);
+  background-image: url("../images/always-grey.png");
+}
+
+.profilePic {  
+  padding: 20px;
+  height: 210px;
+  position: static;
+  text-align: center;
+}
+.username {
+  padding: 15px;
+  font-size: 18px;
+  text-align: center;
+}
