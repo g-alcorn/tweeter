@@ -1,25 +1,87 @@
 /*
- * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
- * https://css-tricks.com/international-box-sizing-awareness-day/
- * Do not modify these two selectors, please
- */
+* http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+* https://css-tricks.com/international-box-sizing-awareness-day/
+* Do not modify these two selectors, please
+*/
 html {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+box-sizing: inherit;
 }
 
 /*
- * Global layout stuff
- */
+* Global layout stuff
+*/
 
 body {
   color: #545149;
   background-color: #f4f1ec;
+  font-family: Source Sans Pro, sans-serif;
   font-size: 24px;
 }
 
+main {
+  background-color: #f4f1ec;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+}
+
+article.tweets-container {
+  text-align: center;
+  padding-top: 2%;
+  font-size: 32px;
+  padding-bottom: 2%;
+  border-bottom: dashed #545149;
+  margin-bottom: 100px;
+}
+
 /*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+* Additional CSS can be defined below or in other CSS files, as per instructions
+*/
+
+article.tweet {
+  border: solid #545149;
+  border-width: 3px;
+}
+article.tweet:hover {
+  border: solid rgb(20, 118, 129);
+  border-width: 5px;
+}
+
+article.tweet p.tweet-text {
+  padding: 5px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border-bottom: solid #000000;
+  border-width: 3px;
+  text-align: left;
+  font-size: 26px;
+}
+
+article.tweet div.metadata {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  padding: 2px;
+  font-family: bungee, sans-serif;
+  font-size: 12px;
+}
+
+article.tweet p.user {
+  justify-self: flex-start;
+  padding: 0px;
+  margin-right: 10%;
+}
+
+article.tweet p.handle {
+  justify-self: flex-start;
+  padding: 0px;
+  margin-right: 10%;
+}
+
+article.tweet p.date-posted {
+  justify-self: flex-start;
+  margin-left: 40%;
+}
