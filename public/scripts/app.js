@@ -13,28 +13,14 @@ $(document).ready(function() {
   };
 
   const renderTweets = function() {
-    $.get('/tweets')
+    $.ajax('/tweets', { method: 'GET' })
       .done(function(database) {
         for (let post in database) {
           let newElement = createTweetElement(database[post]);
           //createTweetElement returns array
           //0:text, 1:user, 2:handle. 3:age
 
-          //put metadata in div above text box
-          let $tweetMeta = $('<div class="metadata">')
-          $tweetMeta
-            .append(newElement[1])
-            .append(newElement[2])
-            .append(newElement[3]);
-
-          //put metadata and tweet text in tweet-specific container
-          let $newTweet = $('<article class="tweet">');
-          $newTweet
-            .prepend($tweetMeta)
-            .append(newElement[0]);
-
-          //append final product to container for ALL tweets
-          $('.tweets-container').append($newTweet);
+          appendToContainer(newElement);
         }
       })
       .fail(function() {
@@ -69,6 +55,47 @@ $(document).ready(function() {
     return [$text, $user, $handle, $age];
   };
 
+  const postNewTweet = function() {
+    //follows format of renderTweets, but will only render
+    //most recent tweet in the database
+    $.ajax('/tweets', { method: 'GET' })
+      .done(function(database) {
+        const newIndex = database.length - 1;
+        appendToContainer(createTweetElement(database[newIndex]));
+      });
+  };
+
+  const appendToContainer = function(newElement) {
+    //newElement is array created by createTweetElement
+    //0:text, 1:user, 2:handle. 3:age
+    //put metadata in div above text box
+    let $tweetMeta = $('<div class="metadata">')
+    $tweetMeta
+      .append(newElement[1])
+      .append(newElement[2])
+      .append(newElement[3]);
+
+    //put metadata and tweet text in tweet-specific container
+    let $newTweet = $('<article class="tweet">');
+    $newTweet
+      .prepend($tweetMeta)
+      .append(newElement[0]);
+
+    //append final product to container for ALL tweets
+    $('.tweets-container').append($newTweet);
+  };
 
   renderTweets();
+  //event.preventDefault();
+  //$.serialize() to convert form data into query string 
+  //which can be sent to server in data field of AJAX POST
+  $( '.new-tweet-submit' ).click(function( event ) {
+    event.preventDefault();
+    //serialize form data
+    const serialized = $( '.new-tweet-text' ).serialize();
+    console.log(serialized);
+    $.post('./tweets', serialized);
+    postNewTweet();
+    console.log("posted");
+  });
 });
