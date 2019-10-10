@@ -55,7 +55,7 @@ $(document).ready(function() {
     return [$text, $user, $handle, $age];
   };
 
-  const postNewTweet = function() {
+  const renderNewTweet = function() {
     //follows format of renderTweets, but will only render
     //most recent tweet in the database
     $.ajax('/tweets', { method: 'GET' })
@@ -86,16 +86,16 @@ $(document).ready(function() {
   };
 
   renderTweets();
-  //event.preventDefault();
-  //$.serialize() to convert form data into query string 
-  //which can be sent to server in data field of AJAX POST
+
+  //Stops form submission from default process
+  //Uses AJAX to render the new tweet
   $( '.new-tweet-submit' ).click(function( event ) {
     event.preventDefault();
     //serialize form data
     const serialized = $( '.new-tweet-text' ).serialize();
     console.log(serialized);
     $.post('./tweets', serialized);
-    postNewTweet();
+    renderNewTweet();
     console.log("posted");
   });
 });
