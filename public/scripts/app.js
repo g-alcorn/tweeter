@@ -36,7 +36,6 @@ $(document).ready(function() {
     let $user = $('<p>');
     let $handle = $('<p>');
     let $age = $('<p>');
-    console.log(tweet);
     //add text and class to each new tag
     $text
       .text(tweet.content.text)
@@ -85,17 +84,49 @@ $(document).ready(function() {
     $('.tweets-container').append($newTweet);
   };
 
+  const verifyMessage = function(serialized) {
+    const length = serialized.length;
+    //serialized always begins with 'true=' (5chars)
+    //gives a numeric code response to differentiate empty and too-long tweets
+    if (length === 5) {
+      return 1;
+    } else if (length > 5 && length <= 145) {
+      return 0;
+    } else if (length > 145) {
+      return 2;
+    }
+  }
+
   renderTweets();
 
   //Stops form submission from default process
   //Uses AJAX to render the new tweet
   $( '.new-tweet-submit' ).click(function( event ) {
     event.preventDefault();
-    //serialize form data
+    //serialize form data & verify length
     const serialized = $( '.new-tweet-text' ).serialize();
-    console.log(serialized);
-    $.post('./tweets', serialized);
-    renderNewTweet();
-    console.log("posted");
+    const verify = verifyMessage(serialized);
+    
+    //post tweet or alert depending on verification value
+    if (verify === 0) {
+      //AJAX posting form data to database
+      $.post('./tweets', serialized)
+        .success(function() {
+          renderNewTweet();        
+        });
+
+      //reset form submission
+      $( '.composer' ).each(function() {
+        this.reset();
+      });
+      $( '.counter' ).text('140');
+      console.log("posted");      
+    } else if (verify === 1) {
+      alert('cannot post empty tweet!');
+    } else if (verify === 2) {
+
+      alert('cannot post tweet over 140 characters!');
+    }
+
   });
 });
