@@ -29,6 +29,9 @@ main {
 }
 
 article.tweets-container {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
   text-align: center;
   padding-top: 2%;
   font-size: 32px;
@@ -46,8 +49,8 @@ article.tweet {
   border-width: 3px;
 }
 article.tweet:hover {
-  border: solid rgb(20, 118, 129);
-  border-width: 5px;
+  border: solid rgb(11, 207, 224);
+  border-width: 3px;
 }
 
 article.tweet p.tweet-text {
@@ -70,18 +73,15 @@ article.tweet div.metadata {
 }
 
 article.tweet p.user {
-  justify-self: flex-start;
   padding: 0px;
   margin-right: 10%;
 }
 
 article.tweet p.handle {
-  justify-self: flex-start;
   padding: 0px;
   margin-right: 10%;
 }
 
 article.tweet p.date-posted {
-  justify-self: flex-start;
   margin-left: 40%;
 }
