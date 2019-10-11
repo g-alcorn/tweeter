@@ -3,7 +3,7 @@ $(document).ready(function() {
   $( ".new-tweet-text" ).on("keyup", function() {
     let charCount = 140;
     charCount -= this.value.length;
-    let counter = this.nextElementSibling.nextElementSibling;
+    let counter = this.nextElementSibling.children[1];
     counter.innerText = (charCount);
 
     if (charCount < 0) {
