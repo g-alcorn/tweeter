@@ -96,8 +96,19 @@ $(document).ready(function() {
       return 2;
     }
   }
-
   renderTweets();
+
+  //make navbar sticky
+  $( window ).scroll(function() {
+    const sticky = $( '.sticky' );
+    const scroll = $( window ).scrollTop();
+
+    if (scroll >= 100) {
+      sticky.addClass('fixed');
+    } else {
+      sticky.removeClass('fixed')
+    }
+  })
 
   //Stops form submission from default process
   //Uses AJAX to render the new tweet

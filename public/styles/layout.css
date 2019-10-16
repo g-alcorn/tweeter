@@ -44,6 +44,13 @@ article.tweets-container {
 * Additional CSS can be defined below or in other CSS files, as per instructions
 */
 
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 article.tweet {
   border: solid #545149;
   border-width: 3px;
@@ -92,6 +99,10 @@ article.tweet p.date-posted {
     font-size: 30px;
     text-align: center;
     height: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   nav {
@@ -120,6 +131,10 @@ article.tweet p.date-posted {
     margin: 0;
   }
 
+  .new-tweet-text {
+    height: 48px;
+  }
+
   .submit-info {
     display: flex;
     flex-direction: row;
@@ -134,9 +149,13 @@ article.tweet p.date-posted {
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .page-head {
     height: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   nav {
@@ -148,9 +167,13 @@ article.tweet p.date-posted {
   }
   .new-tweet {
     width: 66.6%;
-    font-size: 32px;
+    font-size: 18px;
   }
 
+  .new-tweet-text {
+    height: 80px;
+  }
+  
   .tweets-container {
     padding-top: 2%;
     height: 90%;
@@ -161,14 +184,19 @@ article.tweet p.date-posted {
 /* Desktop styles */
 @media only screen and (min-width: 1024px) {
   .page-head {
-    width: 100%;
-    height: 40%;
+    order: 2;
+    width: 264;
+    height: 264%;
+    padding-top: 2%;
+    margin-top: 3%;
+    border: solid #545149;
+    border-width: 4px;
   }
 
   nav {
     font-size: 32px;
   }
-  
+
   .profilePic {
     padding: 0;
     width: 256px;
@@ -178,12 +206,31 @@ article.tweet p.date-posted {
   .username {
     font-size: 24px;
   }
+
+  .desktop {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+  }
+
+  .container {
+    padding: 0;
+    width: 40%;
+  }
+
   .new-tweet {
-    max-width: 90%;
+    width: 100%;
+  }
+  
+  .new-tweet-text {
+    height: 128px;
+    padding: 1%;
   }
 
   .tweets-container {
-    max-width: 1024px;
+    order: 1;
+    max-width: 90%;
     font-size: 16px;
     margin: 0 auto;
   }

@@ -34,36 +34,37 @@
   <body>
 
     <!-- Top nav bar (fixed) -->
-    <nav>
+    <nav class="sticky">
       <span class="siteTitle">Tweeter</span>
     </nav>
 
     <!--- User header -->
-    <header class="page-head">
-      <div id="profile">
-          <img class="profilePic" src="/images/profile-hex.png"> 
-      </div>
-      <div>
-          <h2 class="username">Username</h2>
-      </div>
-    </header>
-    
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form class="composer" action="/tweets" method="POST">
-          <textarea class="new-tweet-text" name="text" placeholder="What are you humming about?"></textarea>
-          <div class="submit-info">
-            <input class="new-tweet-submit" type="submit" value="Tweet">
-            <span class="counter">140</span>
-          </div>
-        </form>
-      </section>  
+    <section class="desktop">
+      <header class="page-head">
+        <div id="profile">
+            <img class="profilePic" src="/images/profile-hex.png"> 
+        </div>
+        <div>
+            <h2 class="username">Username</h2>
+        </div>
+      </header>
+      
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet">
+          <h2>Compose Tweet</h2>
+          <form class="composer" action="/tweets" method="POST">
+            <textarea class="new-tweet-text" name="text" placeholder="What are you humming about?"></textarea>
+            <div class="submit-info">
+              <input class="new-tweet-submit" type="submit" value="Tweet">
+              <span class="counter">140</span>
+            </div>
+          </form>
+        </section>  
 
-      <article class="tweets-container">
-      </article>
-    </main>
-
+        <article class="tweets-container">
+        </article>
+      </main>
+    </section>
   </body>
 </html>
