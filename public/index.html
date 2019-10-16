@@ -35,7 +35,8 @@
 
     <!-- Top nav bar (fixed) -->
     <nav class="sticky">
-      <span class="siteTitle">Tweeter</span>
+      <input class="siteTitle navbar" type="submit" value="Tweeter">
+      <input class="compose-tweet-button navbar" type="submit" value="Compose new tweet">
     </nav>
 
     <!--- User header -->
@@ -51,7 +52,7 @@
       
       <!-- Page-specific (main) content here -->
       <main class="container">
-        <section class="new-tweet">
+        <section id="new-tweet">
           <h2>Compose Tweet</h2>
           <form class="composer" action="/tweets" method="POST">
             <textarea class="new-tweet-text" name="text" placeholder="What are you humming about?"></textarea>

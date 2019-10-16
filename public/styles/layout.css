@@ -16,7 +16,7 @@ box-sizing: inherit;
 
 body {
   color: #545149;
-  background-color: #f4f1ec;
+  background-color: #bbd8ff;
   font-family: Source Sans Pro, sans-serif;
   font-size: 24px;
 }
@@ -51,6 +51,17 @@ article.tweets-container {
   width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 article.tweet {
   border: solid #545149;
   border-width: 3px;
@@ -77,6 +88,18 @@ article.tweet div.metadata {
   padding: 2px;
   font-family: bungee, sans-serif;
   font-size: 12px;
+}
+
+.tweet-footer {
+  display: flex;
+  justify-content: end;
+}
+
+.tweet-footer img {
+  margin-right: 5px;
+  margin-bottom: 2px;
+  height: 24px;
+  width: 24px;
 }
 
 article.tweet p.user {
@@ -126,7 +149,7 @@ article.tweet p.date-posted {
     margin-bottom: 0;
   }
 
-  .new-tweet {
+  #new-tweet {
     font-size: 18px;
     margin: 0;
   }
@@ -160,12 +183,14 @@ article.tweet p.date-posted {
 
   nav {
     font-size: 24px;
+    height: 80px;
   }
 
   .username {
     font-size: 18px;
   }
-  .new-tweet {
+
+  #new-tweet {
     width: 66.6%;
     font-size: 18px;
   }
@@ -195,6 +220,7 @@ article.tweet p.date-posted {
 
   nav {
     font-size: 32px;
+    height: 100px;
   }
 
   .profilePic {
@@ -216,10 +242,12 @@ article.tweet p.date-posted {
 
   .container {
     padding: 0;
-    width: 40%;
+    width: 50%;
+    border: solid #545149;
+    border-width: 4px;
   }
 
-  .new-tweet {
+  #new-tweet {
     width: 100%;
   }
   

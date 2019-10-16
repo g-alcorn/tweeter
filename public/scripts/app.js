@@ -36,6 +36,7 @@ $(document).ready(function() {
     let $user = $('<p>');
     let $handle = $('<p>');
     let $age = $('<p>');
+    let $avatar = $(`<img class="tweet-icon" src="${tweet.user.avatars}">`);
     //add text and class to each new tag
     $text
       .text(tweet.content.text)
@@ -51,7 +52,7 @@ $(document).ready(function() {
       .addClass('date-posted');
 
     //return-value is consistently formatted
-    return [$text, $user, $handle, $age];
+    return [$text, $user, $handle, $age, $avatar];
   };
 
   const renderNewTweet = function() {
@@ -66,19 +67,30 @@ $(document).ready(function() {
 
   const appendToContainer = function(newElement) {
     //newElement is array created by createTweetElement
-    //0:text, 1:user, 2:handle. 3:age
+    //0:text, 1:user, 2:handle. 3:age, 4: avatar
     //put metadata in div above text box
-    let $tweetMeta = $('<div class="metadata">')
+    let $tweetMeta = $('<div class="metadata">');
     $tweetMeta
+      .append(newElement[4])
       .append(newElement[1])
       .append(newElement[2])
       .append(newElement[3]);
+
+    let $tweetFoot = $('<div class="tweet-footer">')
+    let $likeButton = $('<img class="like-button" src="/images/heart-icon.png">');
+    let $retweetButton = $('<img class="retweet-button" src="/images/retweet-icon.png">');
+    let $flagButton = $('<img class="flag-button" src="/images/flag-icon.png">');
+    $tweetFoot
+      .append($likeButton)
+      .append($retweetButton)
+      .append($flagButton);
 
     //put metadata and tweet text in tweet-specific container
     let $newTweet = $('<article class="tweet">');
     $newTweet
       .prepend($tweetMeta)
-      .append(newElement[0]);
+      .append(newElement[0])
+      .append($tweetFoot);
 
     //append final product to container for ALL tweets
     $('.tweets-container').append($newTweet);
@@ -96,7 +108,10 @@ $(document).ready(function() {
       return 2;
     }
   }
+
+  //load page
   renderTweets();
+  $( '#new-tweet' ).hide();
 
   //make navbar sticky
   $( window ).scroll(function() {
@@ -106,9 +121,22 @@ $(document).ready(function() {
     if (scroll >= 100) {
       sticky.addClass('fixed');
     } else {
-      sticky.removeClass('fixed')
+      sticky.removeClass('fixed');
     }
-  })
+  });
+
+  //site title is button to reload page
+  $( '.siteTitle' ).click(function( event ) {
+    event.preventDefault();
+    location.reload();
+  });
+
+  //show tweet composer
+  $( '.compose-tweet-button' ).click(function( event ) {
+    event.preventDefault();
+    const newTweet = $( '#new-tweet' );
+    newTweet.slideToggle(1000);
+  });
 
   //Stops form submission from default process
   //Uses AJAX to render the new tweet
