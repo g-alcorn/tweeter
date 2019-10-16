@@ -1,16 +1,16 @@
 .page-head {
   background-color: rgb(100, 240, 255);
   background-image: url("../images/always-grey.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.profilePic {  
-  padding: 20px;
-  height: 210px;
+.profilePic {
   position: static;
   text-align: center;
 }
 .username {
-  padding: 15px;
-  font-size: 18px;
   text-align: center;
 }
