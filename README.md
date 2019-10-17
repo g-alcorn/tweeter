@@ -1,8 +1,7 @@
 # Tweeter Project
 
 Tweeter is a simple, single-page Twitter clone.
-
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+This project was built to demonstrate and practice skills with HTML, CSS, JavaScript, jQuery, and AJAX on the front-end, and Node, Express, and MongoDB on the back-end.
 
 ## Getting Started
 
@@ -15,3 +14,10 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+## Screenshots
+!["Home page with the new tweet composer revealed by clicking on nav-bar button."](https://raw.githubusercontent.com/g-alcorn/tweeter/master/docs/compose-tweet.png)
+
+!["Tweet with mouse-over effect shown. Note the action buttons, tweet age, and colored border which appear."](https://raw.githubusercontent.com/g-alcorn/tweeter/master/docs/mouse-over-tweet.png)
+
+!["Page view after scrolling down. Nav bar sticks to top of screen when scrolling."](https://raw.githubusercontent.com/g-alcorn/tweeter/master/docs/sticky-nav-bar.png)
