@@ -1,14 +1,13 @@
-.new-tweet {
-  justify-content: space-between;
-  margin-left: 10%;
-  margin-right: 10%;
+#new-tweet {
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border-color: #000000;
 }
 
-.new-tweet h2 {
+#new-tweet h2 {
   font-size: 32px;
-  text-decoration: underline;
-  text-decoration-style: double;
   font-family: bungee, sans-serif;
 }
 
@@ -18,7 +17,7 @@
 }
 
 .new-tweet-text {
-  width: 100%;
+  width: 70%;
   padding: 2px;
   background: #f4f1ec;
   border-top-width: 0px;

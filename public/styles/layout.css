@@ -16,7 +16,7 @@ box-sizing: inherit;
 
 body {
   color: #545149;
-  background-color: #bbd8ff;
+  background-color: rgba(64, 87, 161, 0.384);
   font-family: Source Sans Pro, sans-serif;
   font-size: 24px;
 }
@@ -37,7 +37,7 @@ article.tweets-container {
   padding-top: 2%;
   padding-bottom: 2%;
   border-bottom: dashed #545149;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 /*
@@ -62,6 +62,10 @@ nav {
   justify-content: space-evenly;
 }
 
+h2.username {
+  font-family: bungee, sans-serif;
+}
+
 article.tweet {
   border: solid #545149;
   border-width: 3px;
@@ -71,10 +75,19 @@ article.tweet:hover {
   border-width: 3px;
 }
 
+article.tweet:hover .tweet-footer { 
+  display: flex;
+  justify-content: end;
+}
+
+article.tweet:hover p.tweet-text {
+  margin-bottom: 2px;
+}
+
 article.tweet p.tweet-text {
   padding: 5px;
   margin-top: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
   border-bottom: solid #000000;
   border-width: 3px;
   text-align: left;
@@ -91,8 +104,8 @@ article.tweet div.metadata {
 }
 
 .tweet-footer {
-  display: flex;
-  justify-content: end;
+  height: 24px;
+  display: none;
 }
 
 .tweet-footer img {
@@ -102,6 +115,12 @@ article.tweet div.metadata {
   width: 24px;
 }
 
+article.tweet img.tweet-avatar {
+  height: 49px;
+  width: 49px;
+  margin-right: 12px;
+}
+
 article.tweet p.user {
   padding: 0px;
   margin-right: 10%;
@@ -109,11 +128,14 @@ article.tweet p.user {
 
 article.tweet p.handle {
   padding: 0px;
-  margin-right: 10%;
+  margin-left: 12px;
 }
 
 article.tweet p.date-posted {
+  font-size: 14px;
   font-style: italic;
+  margin-top: 0px;
+  justify-self: flex-end;
 }
 
 /* Mobile Styles */
@@ -186,11 +208,15 @@ article.tweet p.date-posted {
     height: 80px;
   }
 
+  .container {
+    padding-top: 24px;
+  }
   .username {
     font-size: 18px;
   }
 
   #new-tweet {
+    justify-self: center;
     width: 66.6%;
     font-size: 18px;
   }
@@ -241,7 +267,7 @@ article.tweet p.date-posted {
   }
 
   .container {
-    padding: 0;
+    margin-top: 0.8%;
     width: 50%;
     border: solid #545149;
     border-width: 4px;
