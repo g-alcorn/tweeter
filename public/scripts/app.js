@@ -7,9 +7,38 @@
 //const dataHelpers = require('../server/lib/ddata-helpers.js');
 $(document).ready(function() {
   const parseDate = function(age) {
-    let converted = new Date(age);
-    //Slices off time zone info from end of date string
-    return `Posted ${converted.toString().slice(0, 21)}`;
+    let datePosted = new Date(age);
+    let now = new Date(Date.now());
+    let ageYears = now.getFullYear() - datePosted.getFullYear();
+    if (ageYears === 1) {
+      return 'Posted 1 year ago';
+    } else if (ageYears > 1) {
+      return `Posted ${ageYears} years ago`;
+    } else if (ageYears === 0) {
+      let ageMonths = now.getMonth() - datePosted.getMonth();
+      if (ageMonths > 0) {
+        return `Posted ${ageMonths} months ago`;
+      } else if (ageMonths === 0) {
+        let ageDays = now.getDay() - datePosted.getDay();
+        if (ageDays > 0) {
+          return `Posted ${ageDays} days ago`;
+        } else if (ageDays === 0) {
+          let ageHours = now.getHours() - datePosted.getHours();
+          if (ageHours > 1) {
+            return `Posted ${ageHours} hours ago`
+          } else if (ageHours === 1) {
+            return `Posted ${ageHours} hour ago`
+          } else if (ageHours === 0) {
+            let ageMinutes = now.getMinutes() - datePosted.getMinutes();
+            if (ageMinutes === 0 || ageMinutes > 1) {
+              return `Posted ${ageMinutes} minutes ago`;              
+            } else if (ageMinutes === 1) {
+              return `Posted 1 minute ago`;
+            }
+          }
+        }
+      }
+    }
   };
 
   const renderTweets = function() {
@@ -50,7 +79,8 @@ $(document).ready(function() {
     $age
       .text(parseDate(tweet.created_at))
       .addClass('date-posted');
-
+    $avatar
+      .addClass('tweet-avatar');
     //return-value is consistently formatted
     return [$text, $user, $handle, $age, $avatar];
   };
@@ -73,20 +103,20 @@ $(document).ready(function() {
     $tweetMeta
       .append(newElement[4])
       .append(newElement[1])
-      .append(newElement[2])
-      .append(newElement[3]);
+      .append(newElement[2]);
 
     let $tweetFoot = $('<div class="tweet-footer">')
     let $likeButton = $('<img class="like-button" src="/images/heart-icon.png">');
     let $retweetButton = $('<img class="retweet-button" src="/images/retweet-icon.png">');
     let $flagButton = $('<img class="flag-button" src="/images/flag-icon.png">');
     $tweetFoot
+      .append(newElement[3])
       .append($likeButton)
       .append($retweetButton)
       .append($flagButton);
 
     //put metadata and tweet text in tweet-specific container
-    let $newTweet = $('<article class="tweet">');
+    let $newTweet = $(`<article class="tweet">`);
     $newTweet
       .prepend($tweetMeta)
       .append(newElement[0])
